@@ -1,6 +1,6 @@
 {
   "name": "array-trie",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A trie data structure for arrays",
   "main": "trie.js",
   "directories": {
