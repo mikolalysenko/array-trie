@@ -60,8 +60,8 @@ proto.get = function(s) {
     var n = s.shape[0]
     for(var i=0; i<n; ++i) {
       var c = s.get(i)
-      var j = bounds.le(v.symbols, c)
-      if(j < 0 || v.symbols[j] !== c) {
+      var j = bounds.eq(v.symbols, c)
+      if(j < 0) {
         return
       }
       v = v.children[j]
@@ -72,8 +72,8 @@ proto.get = function(s) {
     var n = s.length
     for(var i=0; i<n; ++i) {
       var c = s[i]
-      var j = bounds.le(v.symbols, c)
-      if(j < 0 || v.symbols[j] !== c) {
+      var j = bounds.eq(v.symbols, c)
+      if(j < 0) {
         return
       }
       v = v.children[j]
