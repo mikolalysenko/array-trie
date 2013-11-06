@@ -1,6 +1,6 @@
 array-trie
 ==========
-A [trie](http://en.wikipedia.org/wiki/Trie) data structure for arrays instead of strings.  There are already many of these on npm, but this is the first one that operates on arrays instead of strings.
+A [trie](http://en.wikipedia.org/wiki/Trie) data structure for arrays instead of strings.  There are already many of these on npm, but this is the first one that operates on arrays instead of strings.  Inputs can also be specified as 1D [ndarrays](https://github.com/mikolalysenko/ndarray).
 
 # Example
 
