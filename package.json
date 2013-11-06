@@ -1,0 +1,36 @@
+{
+  "name": "array-trie",
+  "version": "0.0.0",
+  "description": "A trie data structure for arrays",
+  "main": "trie.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "binary-search-bounds": "~0.1.0"
+  },
+  "devDependencies": {
+    "tape": "~2.1.0",
+    "tap": "~0.4.4"
+  },
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mikolalysenko/array-trie.git"
+  },
+  "keywords": [
+    "array",
+    "trie",
+    "int",
+    "float",
+    "boolean",
+    "character"
+  ],
+  "author": "Mikola Lysenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mikolalysenko/array-trie/issues"
+  }
+}
