@@ -16,6 +16,12 @@ trie.set([2,5,6], 3)
 console.log(trie.get([1,2,3]))
 console.log(trie.get([2,5,6]))
 console.log(trie.get([1,1,1]))
+
+//Also works if inputs are 1D ndarrays
+var ndarray = require("ndarray")
+trie.set(ndarray([1,2,3,4]), 5)
+
+console.log(trie.get(ndarray([1,2])))
 ```
 
 # Install

@@ -13,39 +13,73 @@ function Trie(symbols, children, value) {
 var proto = Trie.prototype
 
 proto.set = function(s, value) {
-  var v = this
-  var n = s.length
-  for(var i=0; i<n; ++i) {
-    var c = s[i]
-    var j = bounds.ge(v.symbols, c)
-    if(j < v.symbols.length && v.symbols[j] === c) {
-      v = v.children[j]
-    } else {
-      var l = new Trie([], [], value)
-      for(var k=n-1; k>i; --k) {
-        l = new Trie([s[k]], [l])
+  if(s.shape) {
+    var v = this
+    var n = s.shape[0]
+    for(var i=0; i<n; ++i) {
+      var c = s.get(i)
+      var j = bounds.ge(v.symbols, c)
+      if(j < v.symbols.length && v.symbols[j] === c) {
+        v = v.children[j]
+      } else {
+        var l = new Trie([], [], value)
+        for(var k=n-1; k>i; --k) {
+          l = new Trie([s.get(k)], [l])
+        }
+        v.symbols.splice(j, 0, c)
+        v.children.splice(j, 0, l)
+        return value
       }
-      console.log(j)
-      v.symbols.splice(j, 0, c)
-      v.children.splice(j, 0, l)
-      return value
     }
+    return v.value = value
+  } else {
+    var v = this
+    var n = s.length
+    for(var i=0; i<n; ++i) {
+      var c = s[i]
+      var j = bounds.ge(v.symbols, c)
+      if(j < v.symbols.length && v.symbols[j] === c) {
+        v = v.children[j]
+      } else {
+        var l = new Trie([], [], value)
+        for(var k=n-1; k>i; --k) {
+          l = new Trie([s[k]], [l])
+        }
+        v.symbols.splice(j, 0, c)
+        v.children.splice(j, 0, l)
+        return value
+      }
+    }
+    return v.value = value
   }
-  return v.value = value
 }
 
 proto.get = function(s) {
-  var v = this
-  var n = s.length
-  for(var i=0; i<n; ++i) {
-    var c = s[i]
-    var j = bounds.le(v.symbols, c)
-    if(j < 0 || v.symbols[j] !== c) {
-      return
+  if(s.shape) {
+    var v = this
+    var n = s.shape[0]
+    for(var i=0; i<n; ++i) {
+      var c = s.get(i)
+      var j = bounds.le(v.symbols, c)
+      if(j < 0 || v.symbols[j] !== c) {
+        return
+      }
+      v = v.children[j]
     }
-    v = v.children[j]
+    return v.value
+  } else {
+    var v = this
+    var n = s.length
+    for(var i=0; i<n; ++i) {
+      var c = s[i]
+      var j = bounds.le(v.symbols, c)
+      if(j < 0 || v.symbols[j] !== c) {
+        return
+      }
+      v = v.children[j]
+    }
+    return v.value
   }
-  return v.value
 }
 
 function createTrie() {
